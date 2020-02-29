@@ -12,8 +12,9 @@ public class Task3 {
      */
     int[] getShiftedArray(int[] inputArray) {
         int[] q = new int[]{};
-        if (inputArray == null || inputArray.length == 0)
+        if (inputArray == null || inputArray.length == 0) {
             return q;
+        }
         int temp = inputArray[inputArray.length - 1];
         for (int i = inputArray.length - 1; i > 0; i--) {
             inputArray[i] = inputArray[i-1];
@@ -31,8 +32,9 @@ public class Task3 {
      * Пример: 2 4 6 -> 24
      */
     int getMaxProduct(int[] inputArray) {
-        if (inputArray == null || inputArray.length < 2)
+        if (inputArray == null || inputArray.length < 2) {
             return 0;
+        }
         int min1=Math.min(inputArray[0], inputArray[1]);
         int min2=Math.max(inputArray[0], inputArray[1]);
         int max1=Math.max(inputArray[0], inputArray[1]);
@@ -42,14 +44,16 @@ public class Task3 {
                 min2 = min1;
                 min1 = inputArray[i];
             }
-            else
+            else {
                 min2 = Math.min(inputArray[i], min2);
+            }
             if (inputArray[i] >= max1){
                 max2 = max1;
                 max1 = inputArray[i];
             }
-            else
+            else{
                 max2 = Math.max(inputArray[i], max2);
+            }
         }
         return Math.max(min1 * min2, max1 * max2);
     }
@@ -63,11 +67,14 @@ public class Task3 {
      */
     int getABpercentage(String input) {
         int a = 0;
-        if (input == "" || input == null)
+        if (input == "" || input == null) {
             return 0;
-        for (int i = 0; i < input.length(); i++)
-            if (input.charAt(i) == 'a' || input.charAt(i) == 'A' || input.charAt(i) == 'b' ||input.charAt(i) == 'B')
+        }
+        for (int i = 0; i < input.length(); i++) {
+            if (input.charAt(i) == 'a' || input.charAt(i) == 'A' || input.charAt(i) == 'b' || input.charAt(i) == 'B'){
                 a++;
+            }
+        }
         return a * 100 / input.length();
     }
 
@@ -75,11 +82,13 @@ public class Task3 {
      * Напишите функцию, которая определяет, является ли входная строка палиндромом
      */
     boolean isPalindrome(String input) {
-        if (input==null)
+        if (input==null) {
             return false;
+        }
         for(int i=0; i<input.length()/2; i++) {
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i))
+            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
                 return false;
+            }
         }
         return true;
     }
@@ -89,8 +98,9 @@ public class Task3 {
      * где группы одинаковых символов заменены на один символ и кол-во этих символов идущих подряд в строке
      */
     String getEncodedString(String input) {
-        if (input == null || input.isEmpty())
+        if (input == null || input.isEmpty()) {
             return "";
+        }
         StringBuilder result = new StringBuilder("");
         int count = 0;
         int i = 0;
@@ -115,8 +125,9 @@ public class Task3 {
      * isPermutation("abc", "Abc") == false;
      */
     boolean isPermutation(String one, String two) {
-        if (one == null || two == null || one.isEmpty() || two.isEmpty() || one.length() != two.length())
+        if (one == null || two == null || one.isEmpty() || two.isEmpty() || one.length() != two.length()){
             return false;
+        }
         int[] arr = new int[256];
         for (int i = 0; i < one.length(); i++){
             arr[one.charAt(i)]++;
@@ -125,8 +136,9 @@ public class Task3 {
             arr[two.charAt(i)]--;
         }
         for (int i = 0; i < 256; i++){
-            if (arr[i] != 0)
+            if (arr[i] != 0) {
                 return false;
+            }
         }
         return true;
     }
@@ -137,12 +149,14 @@ public class Task3 {
      * Строкой является последовательность символов длинной N, где N > 0
      */
     boolean isUniqueString(String s) {
-        if (s == null || s.isEmpty())
+        if (s == null || s.isEmpty()) {
             return false;
+        }
         boolean[] arr = new boolean[256];
         for (int i = 0; i < s.length(); i++){
-            if (arr[s.charAt(i)])
+            if (arr[s.charAt(i)]) {
                 return false;
+            }
             arr[s.charAt(i)] = true;
         }
         return true;
@@ -154,8 +168,9 @@ public class Task3 {
      * Если входной массив == null - вернуть пустой массив
      */
     int[][] matrixTranspose(int[][] m) {
-        if (m == null)
+        if (m == null) {
             m = new int[][]{{}, {}};
+        }
         for (int i = 0; i < m.length; i++){
             for (int j = i + 1; j < m[i].length; j++){
                 int temp = m[i][j];
@@ -176,11 +191,13 @@ public class Task3 {
      * Если исходный массив == null -  вернуть пустую строку
      */
     String concatWithSeparator(String[] inputStrings, Character separator) {
-        if (separator == null)
+        if (separator == null) {
             separator = ' ';
+        }
         StringBuilder result = new StringBuilder("");
-        if (inputStrings == null || inputStrings.length == 0)
+        if (inputStrings == null || inputStrings.length == 0) {
             return result.toString();
+        }
         for (int i = 0; i < inputStrings.length - 1; i++){
             result.insert(result.length(), inputStrings[i]);
             result.insert(result.length(), separator);
@@ -193,12 +210,14 @@ public class Task3 {
      * Напишите функцию, принимающую массив строк и строку-перфикс и возвращающую кол-во строк массива с данным префиксом
      */
     int getStringsStartWithPrefix(String[] inputStrings, String prefix) {
-        if (inputStrings == null || prefix == null)
+        if (inputStrings == null || prefix == null) {
             return 0;
+        }
         int result = 0;
         for (int i = 0; i < inputStrings.length; i++){
-            if (inputStrings[i].startsWith(prefix))
+            if (inputStrings[i].startsWith(prefix)) {
                 result++;
+            }
         }
         return result;
     }
